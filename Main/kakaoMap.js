@@ -20,7 +20,7 @@ var map = new kakao.maps.Map(container, options);  //지도 생성 위치 = cont
 
 //마커 이미지 지정
 var trashCan = '../Main/trashCan.png'
-var waterDis = '../Main/waterDispancer.png'
+var water = '../Main/waterDispancer.png'
 var toilet = '../Main/toilet.png'
 
 
@@ -31,7 +31,7 @@ imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
 var typeOfMarker = {
     toilet: new kakao.maps.MarkerImage(toilet, imageSize, imageOption),
     trash: new kakao.maps.MarkerImage(trashCan, imageSize, imageOption),
-    waterDis: new kakao.maps.MarkerImage(waterDis, imageSize, imageOption)
+    water: new kakao.maps.MarkerImage(water, imageSize, imageOption)
 }
 
 var markers = [
@@ -46,7 +46,7 @@ var markers = [
     {
         title: "공학관",
         latlng: new kakao.maps.LatLng(37.8862885, 127.7357552),
-        type: typeOfMarker.waterDis
+        type: typeOfMarker.water
     },
     {
         title: "캠퍼스라이프센터",
@@ -72,6 +72,8 @@ for (i = 0; i < markers.length; i++) {
     });
 }
 
+
+
 //---------------------------클릭시 마커 생성 이벤트---------------------------
 kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
     var latlng = mouseEvent.latLng;
@@ -81,14 +83,32 @@ kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
     console.log(message)
     console.log(message2)
     console.log(message3)
-    document.getElementById("mainDiv").style.display = "block"
-    document.getElementById("blackside").style.display = "block"
-     // 커스텀 오버레이가 표시될 위치입니다 
-     var position = new kakao.maps.LatLng(message, message2);
- 
-    //좌표값 쓰로잉은 위 쪽에 나온 변수를 mysql에 돌리는 전달하는 방법을 알아와야 할 것 같음.
+    var position = new kakao.maps.LatLng(message, message2);
+     
+document.getElementById("mainDiv").style.display = "block"
+document.getElementById("blackside").style.display = "block"
+
 })
 
+//div창 안의 버튼들
+var submitbtn = document.getElementById("submitButton")
+var resetBtn = document.getElementById("resetButton")
+var typeTags = document.querySelectorAll(".typeTag")
+var titleText = document.getElementById("opinion_txt")
+var select
+typeTags.forEach(type => {
+    type.addEventListener('click', function () {
+        console.log(type.id)
+        select = type.id
+    })
+});
+submitbtn.addEventListener('click',function(){
+    console.log(select);
+    console.log(titleText.value)
+})
+resetBtn.addEventListener('click',function(){
+  
+})
 //---------------- geolocation 이용해서 현재 위치 받아 지도의 중심으로 설정------------
 if (navigator.geolocation) {
 

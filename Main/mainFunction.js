@@ -47,13 +47,3 @@ document.getElementById("blackside").addEventListener('click',function(){
   this.style.display = "none"
   document.getElementById("mainDiv").style.display = "none"
 })
-
-var submitbtn = document.getElementById("submitButton")
-var resetBtn = document.getElementById("resetButton")
-
-submitbtn.addEventListener('click',function(){
-
-})
-resetBtn.addEventListener('click',function(){
-  
-})
